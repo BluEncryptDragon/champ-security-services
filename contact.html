@@ -67,50 +67,144 @@
           </div>
         </div>
 
-        <div class="contact-form-wrap">
-          <h2>Send an Inquiry</h2>
-          <form class="contact-form">
-            <div class="form-row">
-              <label for="name">Full Name</label>
-              <input type="text" id="name" name="name" placeholder="Your full name" required>
-            </div>
+        ```html
+<div class="contact-form-wrap">
+  <h2>Send an Enquiry</h2>
 
-            <div class="form-row">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="Your email address" required>
-            </div>
+  <form
+    class="contact-form"
+    action="https://formspree.io/f/xykrgqlq"
+    method="POST"
+  >
 
-            <div class="form-row">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" placeholder="Your phone number">
-            </div>
+    <!-- Formspree Email Subject -->
+    <input type="hidden" name="_subject" value="New Enquiry from Champ Security Services Website">
 
-            <div class="form-row">
-              <label for="service">Service Required</label>
-              <select id="service" name="service">
-                <option value="">Select a service</option>
-                <option>Static Guarding</option>
-                <option>Mobile Patrol Services</option>
-                <option>Event Security</option>
-                <option>Access Control</option>
-                <option>Asset & Property Protection</option>
-                <option>Custom Security Solutions</option>
-              </select>
-            </div>
+    <!-- Redirect after successful submission -->
+    <input type="hidden" name="_next" value="https://prosolvit.co.nz/champ-security-services/thank-you.html">
 
-            <div class="form-row">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="6" placeholder="Tell us about your security requirements"></textarea>
-            </div>
 
-            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-          </form>
+    <div class="form-row">
+      <label for="name">Full Name</label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        placeholder="Your full name" 
+        required>
+    </div>
 
-          <p class="form-note">
-            To make this form actually send messages, connect it to Formspree, Netlify Forms, EmailJS,
-            or your hosting provider's form handler.
-          </p>
-        </div>
+
+    <div class="form-row">
+      <label for="company">Company / Organisation</label>
+      <input 
+        type="text" 
+        id="company" 
+        name="company" 
+        placeholder="Company name (optional)">
+    </div>
+
+
+    <div class="form-row">
+      <label for="email">Email Address</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        placeholder="Your email address" 
+        required>
+    </div>
+
+
+    <div class="form-row">
+      <label for="phone">Phone Number</label>
+      <input 
+        type="tel" 
+        id="phone" 
+        name="phone" 
+        placeholder="Your phone number" 
+        required>
+    </div>
+
+
+    <div class="form-row">
+      <label for="service">Security Service Required</label>
+
+      <select id="service" name="service" required>
+
+        <option value="">Select a service</option>
+
+        <option>Site Security</option>
+
+        <option>Mobile Patrol Services</option>
+
+        <option>Security Presence & Welfare Checks</option>
+
+        <option>Lock-Up & Opening Services</option>
+
+        <option>Property & Asset Protection</option>
+
+        <option>General Security Enquiry</option>
+
+      </select>
+    </div>
+
+
+    <div class="form-row">
+      <label for="contact-method">Preferred Contact Method</label>
+
+      <select id="contact-method" name="preferred_contact_method">
+
+        <option>Email</option>
+
+        <option>Phone</option>
+
+        <option>Either</option>
+
+      </select>
+    </div>
+
+
+    <div class="form-row">
+      <label for="message">Message</label>
+
+      <textarea
+        id="message"
+        name="message"
+        rows="6"
+        placeholder="Please provide details about your security requirements..."
+        required></textarea>
+
+    </div>
+
+
+    <div class="form-row checkbox-row">
+
+      <label>
+
+        <input 
+          type="checkbox" 
+          name="privacy_consent"
+          required>
+
+        I have read and agree to the 
+        <a href="privacy-policy.html" target="_blank">
+          Privacy Policy
+        </a>.
+
+      </label>
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary btn-full">
+      Send Enquiry
+    </button>
+
+
+  </form>
+</div>
+
       </div>
     </section>
   </main>
