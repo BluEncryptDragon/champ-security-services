@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Champ Security Services — Physical Security Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#17181A;
+    --graphite:#232527;
+    --graphite-2:#2B2D30;
+    --bone:#EEE9E0;
+    --bone-dim:#B9B4AA;
+    --brass:#B08D57;
+    --brass-bright:#D4AF6A;
+    --line:#3A3C3E;
+    --red:#7A2E2E;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--charcoal);
+    color:var(--bone);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--brass); color:var(--charcoal);}
+  a{color:inherit;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--brass-bright);
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em;}
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+
+  /* ===== NAV ===== */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(23,24,26,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:18px 32px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem;
+    letter-spacing:0.01em; display:flex; align-items:center; gap:10px;
+  }
+  .brand .mark{
+    width:28px; height:28px; border:1.5px solid var(--brass);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono'; font-size:0.7rem; color:var(--brass-bright);
+    transform:rotate(45deg);
+  }
+  .brand .mark span{transform:rotate(-45deg);}
+  nav.links{display:flex; gap:28px; font-size:0.85rem;}
+  nav.links a{text-decoration:none; color:var(--bone-dim); transition:color .2s;}
+  nav.links a:hover{color:var(--brass-bright);}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:110px 0 80px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 119px, rgba(176,141,87,0.05) 120px);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.4fr 1fr; gap:56px; align-items:end;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.05;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--brass-bright);
+  }
+  .hero p.lead{
+    font-size:1.08rem; color:var(--bone-dim); max-width:52ch;
+  }
+  .hero .cred-box{
+    border:1px solid var(--line);
+    background:var(--graphite);
+    padding:24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+  }
+  .cred-box .row{
+    display:flex; justify-content:space-between;
+    padding:9px 0; border-bottom:1px dashed var(--line);
+    color:var(--bone-dim);
+  }
+  .cred-box .row:last-child{border-bottom:none;}
+  .cred-box .row b{color:var(--bone); font-weight:500;}
+  .cred-box .status{
+    display:inline-block; width:7px; height:7px; border-radius:50%;
+    background:var(--brass-bright); margin-right:6px;
+    box-shadow:0 0 6px var(--brass-bright);
+  }
+
+  /* ===== SECTION generic ===== */
+  section{padding:78px 0; border-bottom:1px solid var(--line);}
+  .section-head{margin-bottom:44px; max-width:60ch;}
+  .section-head h2{font-size:1.9rem; margin-top:10px;}
+  .section-head p{color:var(--bone-dim); margin-top:10px;}
+
+  /* ===== SUMMARY STRIP ===== */
+  .strip{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .strip div{
+    background:var(--charcoal); padding:26px 22px;
+  }
+  .strip .num{
+    font-family:'Fraunces', serif; font-size:2rem; color:var(--brass-bright);
+  }
+  .strip .lbl{
+    font-family:'IBM Plex Mono'; font-size:0.7rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--bone-dim); margin-top:6px;
+  }
+
+  /* ===== SPECIALIZATIONS ===== */
+  .cap-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .cap-card{
+    background:var(--graphite); padding:30px 26px;
+  }
+  .cap-card .idx{
+    font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--brass);
+  }
+  .cap-card h3{
+    font-size:1.15rem; margin:12px 0 10px; font-weight:600;
+  }
+  .cap-card p{color:var(--bone-dim); font-size:0.92rem;}
+
+  /* ===== DUTY LOG / TIMELINE (signature element) ===== */
+  .log{position:relative; padding-left:2px;}
+  .log::before{
+    content:""; position:absolute; left:110px; top:6px; bottom:6px;
+    width:1px; background:var(--line);
+  }
+  .log-entry{
+    display:grid; grid-template-columns:110px 1fr; gap:0;
+    position:relative; padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .log-entry:first-child{padding-top:0;}
+  .log-entry:last-child{border-bottom:none; padding-bottom:0;}
+  .log-time{
+    font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--brass-bright);
+    padding-top:2px;
+  }
+  .log-dot{
+    position:absolute; left:106px; top:32px;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--charcoal); border:2px solid var(--brass);
+  }
+  .log-body{padding-left:34px;}
+  .log-body h3{font-size:1.15rem; margin-bottom:6px;}
+  .log-body .employer{
+    font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--bone-dim);
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; display:block;
+  }
+  .log-body p{color:var(--bone-dim); font-size:0.94rem; max-width:64ch;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+  .tag{
+    font-family:'IBM Plex Mono'; font-size:0.68rem; letter-spacing:0.04em;
+    border:1px solid var(--line); color:var(--bone-dim);
+    padding:5px 10px; text-transform:uppercase;
+  }
+
+  /* ===== DEPLOYMENTS (sector cards) ===== */
+  .deploy-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .deploy-card{background:var(--charcoal); padding:28px;}
+  .deploy-card h3{font-size:1.05rem; margin-bottom:8px; display:flex; align-items:center; gap:10px;}
+  .deploy-card h3 .dash{width:16px; height:1.5px; background:var(--brass);}
+  .deploy-card p{color:var(--bone-dim); font-size:0.9rem;}
+
+  /* ===== COMMENDATION ===== */
+  .commendation{
+    background:var(--graphite);
+    border:1px solid var(--brass);
+    padding:44px;
+    display:grid; grid-template-columns:auto 1fr; gap:32px; align-items:center;
+  }
+  .ribbon{
+    width:60px; height:80px;
+    background:linear-gradient(135deg, var(--brass) 0%, var(--red) 100%);
+    clip-path:polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+  }
+  .commendation .eyebrow{margin-bottom:8px;}
+  .commendation h3{font-size:1.3rem; margin-bottom:8px;}
+  .commendation p{color:var(--bone-dim); font-size:0.95rem;}
+
+  /* ===== COVERAGE ===== */
+  .coverage-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .coverage-card{background:var(--charcoal); padding:30px;}
+  .coverage-card .eyebrow{margin-bottom:10px;}
+  .coverage-card ul{list-style:none; margin-top:14px;}
+  .coverage-card li{
+    font-size:0.9rem; color:var(--bone-dim); padding:7px 0;
+    border-bottom:1px dashed var(--line);
+    display:flex; justify-content:space-between;
+  }
+  .coverage-card li:last-child{border-bottom:none;}
+
+  /* ===== CONTACT / CTA ===== */
+  .cta{
+    text-align:center; padding:100px 0 110px; border-bottom:none;
+  }
+  .cta h2{font-size:2.2rem; max-width:20ch; margin:16px auto 20px;}
+  .cta p{color:var(--bone-dim); max-width:50ch; margin:0 auto 34px;}
+  .btn-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono'; font-size:0.82rem; letter-spacing:0.04em;
+    text-transform:uppercase; text-decoration:none; padding:15px 28px;
+    border:1px solid var(--brass);
+  }
+  .btn.primary{background:var(--brass); color:var(--charcoal); font-weight:600;}
+  .btn.ghost{color:var(--bone);}
+
+  footer{
+    padding:32px 0; text-align:center;
+    font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--bone-dim);
+  }
+
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr;}
+    .strip{grid-template-columns:repeat(2,1fr);}
+    .cap-grid{grid-template-columns:1fr;}
+    .deploy-grid{grid-template-columns:1fr;}
+    .coverage-grid{grid-template-columns:1fr;}
+    .log{padding-left:0;}
+    .log::before{left:70px;}
+    .log-entry{grid-template-columns:70px 1fr;}
+    .log-dot{left:66px;}
+    nav.links{display:none;}
+    .commendation{grid-template-columns:1fr; text-align:center;}
+    .commendation .ribbon{justify-self:center;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="mark"><span>CS</span></span> Champ Security Services</div>
+    <nav class="links">
+      <a href="#record">Service Record</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#deployments">Sectors</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Physical Security — South Island, New Zealand</div>
+      <h1>A career built on <em>presence, discipline,</em> and getting the details right.</h1>
+      <p class="lead">Champ Security Services is the practice of one security professional's field experience — static guarding, mobile patrol, crime scene protection, critical infrastructure, and specialist operations — brought together for clients who need someone who has actually done the work, not just studied it.</p>
+    </div>
+    <div class="cred-box">
+      <div class="row"><span><span class="status"></span>Status</span> <b>Available for engagement</b></div>
+      <div class="row"><span>Coverage</span> <b>Christchurch · Canterbury</b></div>
+      <div class="row"><span>Sectors served</span> <b>Commercial · Government · Critical Infrastructure.</b></div>
+      <div class="row"><span>Recognition</span> <b>Award for Continued Excellence</b></div>
+      <div class="row"><span>Clearance history</span> <b>High Court–vetted (Auckland)</b></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="strip">
+      <div><div class="num">5</div><div class="lbl">Security firms</div></div>
+      <div><div class="num">2</div><div class="lbl">Islands covered</div></div>
+      <div><div class="num">10+</div><div class="lbl">Sector types secured</div></div>
+      <div><div class="num">1</div><div class="lbl">Framed commendation</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Capabilities</div>
+      <h2>What I bring to a site</h2>
+      <p>Every environment is different. These are the disciplines that carry across all of them.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card">
+        <div class="idx">01</div>
+        <h3>Static &amp; Site Guarding</h3>
+        <p>Long-form, single-point responsibility for a site — construction, commercial, and residential — where consistency and visible presence do the work of prevention.</p>
+      </div>
+      <div class="cap-card">
+        <div class="idx">02</div>
+        <h3>Mobile &amp; Night Patrol</h3>
+        <p>Route-based patrol across large precincts and multi-site portfolios, including alarm arming, lock-up/unlock procedures, and perimeter checks after hours.</p>
+      </div>
+      <div class="cap-card">
+        <div class="idx">03</div>
+        <h3>Crime Scene Guarding</h3>
+        <p>Scene integrity and access control in direct support of New Zealand Police, maintaining chain of custody until scenes are formally released.</p>
+      </div>
+      <div class="cap-card">
+        <div class="idx">04</div>
+        <h3>Critical Infrastructure</h3>
+        <p>Fuel storage facilities, telecommunications infrastructure, marina and port assets — sites where a lapse has consequences well beyond the fence line.</p>
+      </div>
+      <div class="cap-card">
+        <div class="idx">05</div>
+        <h3>Government &amp; Public Sector</h3>
+        <p>Front-of-house and internal security for public agency buildings, courts, and service centres, where the public and staff both need to feel safe.</p>
+      </div>
+      <div class="cap-card">
+        <div class="idx">06</div>
+        <h3>Specialist &amp; VIP Operations</h3>
+        <p>Vetted, briefed operational work alongside Police and Secret Services | allied protective agencies for high-profile events and search operations, under strict confidentiality.</p>
+      </div>
+      <div class="cap-card">
+        <div class="idx">07</div>
+        <h3>Healthcare &amp; Hospital Security</h3>
+        <p>Emergency Department and ward security, including patient restraint support, monitoring of high-risk patients, and de-escalation of aggressive or distressed individuals in a clinical setting.</p>
+      </div>
+      <div class="cap-card">
+        <div class="idx">08</div>
+        <h3>Conflict De-escalation</h3>
+        <p>Calm, controlled response to volatile situations — from aggressive patients to confrontations on patrol — prioritising safety for staff, patients, and the public over force.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="record">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Service Record</div>
+      <h2>Career history</h2>
+      <p>Field roles held across five established New Zealand security providers.</p>
+    </div>
+    <div class="log">
+      <div class="log-entry">
+        <div class="log-time">Armourguard<br>Security Ltd</div>
+        <div class="log-dot"></div>
+        <div class="log-body">
+          <span class="employer">Christchurch &amp; Auckland</span>
+          <h3>Professional Security Officer</h3>
+          <p>Static roles across Christchurch's commercial core, shopping centres, and polytechnic sites, Crime scene guarding in support of NZ Police, Construction site and new-build security, including retail developments and residential care facility builds. Selected for a specialist, Security-cleared VIP operation in Auckland alongside NZ Police and American Secret Services and allied protective services during a high-profile diplomatic event. Awarded a framed commendation for Continued Excellence for offender apprehension while solely responsible for a large campus site at night.</p>
+          <div class="tag-row">
+            <span class="tag">Crime Scene Guarding</span>
+            <span class="tag">VIP Protection Support</span>
+            <span class="tag">High Court Vetted</span>
+            <span class="tag">Static Guard</span>
+            <span class="tag">Commendation Recipient</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-time">First Security<br>Limited</div>
+        <div class="log-dot"></div>
+        <div class="log-body">
+          <span class="employer">Christchurch</span>
+          <h3>Security Officer — Commercial, Government &amp; Healthcare Sites</h3>
+          <p>Internal and external security for major retail shopping Malls, banking, and public-sector premises. Provided Security Monitoring and Patrols for Canterbury University</p>
+          <div class="tag-row">
+            <span class="tag">University &amp; ED Security</span>
+            <span class="tag">Retail &amp; Banking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-time">Triton<br>Security</div>
+        <div class="log-dot"></div>
+        <div class="log-body">
+          <span class="employer">Christchurch</span>
+          <h3>Site Security Officer</h3>
+          <p>Hospital security at Christchurch Public Hospital and Christchurch Women's Hospital, including Emergency Department coverage, high-risk patient monitoring, Medication and hospital dispensary monitoring and security and ward de-escalation.</p>
+          <div class="tag-row">
+            <span class="tag">Healthcare &amp; Hospital Security</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-time">P4G<br>Security</div>
+        <div class="log-dot"></div>
+        <div class="log-body">
+          <span class="employer">Christchurch</span>
+          <h3>Professional Security - Roaming Mobile Patrol</h3>
+          <p>Perimeter security Christchurch International Airport for critical fuel storage infrastructure, alongside patroling and access control of gated marinas, boat, and yacht secured storage facilities in Lyttelton.</p>
+          <div class="tag-row">
+            <span class="tag">External Airport Security</span>
+            <span class="tag">Marine &amp; Marina Security</span>
+            <span class="tag">Service Station Welfare Checks</span>
+            <span class="tag">Commercial Business Alarm Activations</span>
+            <span class="tag">Private Residential Alarm Activations</span>
+            <span class="tag">Major Shopping Mall Alarm disarms, Internal Security Patrolling, Staff Welfare checks and Re-arming of Alarms, External Patrol and Perimeter gate lockups.</span>
+            <span class="tag">External and Internal Security Checks for Data Centers</span>
+            <span class="tag">External and Internal Patrolling Security checks for Major Public and Private Secondary High Schools</span>
+            <span class="tag">External and Internal Security Checks, Alarm disarms and re-arms and lock checking of all cars in car yards central city.</span>
+            <span class="tag">External and Internal Security Patrolling of major Timber Yards</span>
+            <span class="tag">External and InternalSecurity checks of Major Resthomes and Retirement villages.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deployments">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Sectors Secured</div>
+      <h2>Environments I've worked in</h2>
+      <p>A cross-section of the site types covered across both islands. Client and site names withheld for confidentiality.</p>
+    </div>
+    <div class="deploy-grid">
+      <div class="deploy-card">
+        <h3><span class="dash"></span>Retail &amp; Shopping Centres</h3>
+        <p>Major shopping malls including lock-up, unlock, and alarm-arming responsibilities; supermarket internal and external security.</p>
+      </div>
+      <div class="deploy-card">
+        <h3><span class="dash"></span>Banking &amp; Financial</h3>
+        <p>Internal and external security coverage for retail banking premises in high-footfall commercial precincts.</p>
+      </div>
+      <div class="deploy-card">
+        <h3><span class="dash"></span>Government &amp; Justice</h3>
+        <p>Courthouse and public agency building security; front-of-house and internal coverage for service centres and public offices.</p>
+      </div>
+      <div class="deploy-card">
+        <h3><span class="dash"></span>Fuel &amp; Utilities</h3>
+        <p>Perimeter security and patrol for fuel storage facilities, including airport-adjacent fuel infrastructure, plus welfare checks for service station staff.</p>
+      </div>
+      <div class="deploy-card">
+        <h3><span class="dash"></span>Telecommunications</h3>
+        <p>Protection of rural telecommunications aerial towers against interference and attack.</p>
+      </div>
+      <div class="deploy-card">
+        <h3><span class="dash"></span>Marine &amp; Marina</h3>
+        <p>Gated boat and yacht storage, marina premises, and secure jetty patrol in Lyttelton.</p>
+      </div>
+      <div class="deploy-card">
+        <h3><span class="dash"></span>Construction &amp; Development</h3>
+        <p>New-build retail and residential care facility construction sites, secured through to completion.</p>
+      </div>
+      <div class="deploy-card">
+        <h3><span class="dash"></span>Education</h3>
+        <p>Polytechnic campus security, static and night patrol, with a strong record of offender apprehension.</p>
+      </div>
+      <div class="deploy-card">
+        <h3><span class="dash"></span>Healthcare</h3>
+        <p>Christchurch Public Hospital and Christchurch Women's Hospital, including Emergency Department coverage, high-risk ward monitoring, and patient de-escalation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Recognition</div>
+      <h2>Commendation</h2>
+    </div>
+    <div class="commendation">
+      <div class="ribbon"></div>
+      <div>
+        <div class="eyebrow">Armourguard Security — Christchurch</div>
+        <h3>Award for Continued Excellence</h3>
+        <p>Presented in recognition of sustained, high-quality performance while solely responsible for the overnight security of a major polytechnic campus — including a strong, consistent record of offender apprehension.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Coverage</div>
+      <h2>Where I operate</h2>
+    </div>
+    <div class="coverage-grid">
+      <div class="coverage-card">
+        <div class="eyebrow">South Island</div>
+        <ul>
+          <li><span>Christchurch — Central City</span></li>
+          <li><span>Canterbury Region</span></li>
+          <li><span>North Canterbury</span></li>
+          <li><span>Sumner Region</span></li>
+          <li><span>Lyttelton &amp; Port Precinct</span></li>
+          <li><span>Banks Peninsula &amp; Akaroa Region</span></li>
+        </ul>
+      </div>
+      <div class="coverage-card">
+        <div class="eyebrow">South Island</div>
+        <ul>
+          <li><span>Special-vetted operations, on request</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Get In Touch</div>
+    <h2>Looking for security you don't have to double-check?</h2>
+    <p>Whether it's a single site, a patrol contract, or a one-off request, I'm available to discuss what your property or business needs.</p>
+    <div class="btn-row">
+      <a href="mailto:champsecurityservices@gmail.com" class="btn primary">Email Champ Security</a>
+      <a href="tel:+640225223014" class="btn ghost">Call — 0225223014</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Champ Security Services · Christchurch, New Zealand · References available on request 
+</footer>
+
+</body>
+</html>
